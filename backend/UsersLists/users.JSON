@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "user1",
+      "password": "user1123",
+      "role": "worker",
+      "attendance": [],
+      "email": "user1@gmail.com",
+      "phone": "0500000000"
+    }
+  ]
+}

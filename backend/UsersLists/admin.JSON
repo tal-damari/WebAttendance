@@ -1,0 +1,10 @@
+{
+  "admin":[
+    {
+      "username": "administrator",
+      "password": "administrator123",
+      "email": "taldamari643@gmail.com",
+      "role": "manager"
+    }
+  ]
+}
