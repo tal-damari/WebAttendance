@@ -1,36 +1,55 @@
-import {Router} from "express";
-import fs from 'fs';
+import { Router } from "express";
+import fs from "fs/promises";
 
-
-////TODO: try to figure out how to get to username value///
-const filePath = './UsersInfo/admin.JSON';
 const router = new Router();
-let adminData;
-fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-        console.error('Error reading the file:', err);
-        return;
-    }
-    adminData = JSON.parse(data);
-    adminData = adminData["admin"][0];
-})
+const filePath = './UsersInfo/admin.JSON';
 
+async function fileReader() {
+    try {
+        const data = await fs.readFile(filePath, 'utf8');
+        const adminData = JSON.parse(data);
+        return adminData["admin"][0];
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+}
 
-const adminUsername = adminData;
-//const adminPassword = adminData.password;
-/*
-router.post("/login", (req, res) => {
-    const {username, password} = req.body;
-    if (username === adminUsername && password === adminPassword) {
-        res.status(200).send({message: 'Welcome to Attendance as an Admin!'});
+let adminInfo;
+
+const initializeAdminInfo = async () => {
+    try {
+        adminInfo = await fileReader();
+        console.log('Admin Info loaded:', adminInfo);
+    } catch (error) {
+        console.error('Failed to load Admin Info:', error);
     }
-    else {
-        res.status(401).send({message: 'Unauthorized'});
-    }
-})*/
+};
+
+await initializeAdminInfo();
 
 router.get('/', (req, res) => {
-    res.status(200).send({adminData});
+    if (adminInfo) {
+        const username = adminInfo.username;
+        res.status(200).send({ username });
+    } else {
+        res.status(500).send({ error: 'Admin info is unavailable' });
+    }
 });
+
+router.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    if(adminInfo){
+        const adminUsername = adminInfo.username;
+        const adminPassword = adminInfo.password;
+        if(adminUsername === username && adminPassword === password){
+            res.status(200).send({message: `You are logged in as ${adminUsername}!`});
+        }
+        else{
+            res.status(500).send({message: `Unauthorized`});
+        }
+
+    }
+})
 
 export default router;
