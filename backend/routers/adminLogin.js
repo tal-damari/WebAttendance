@@ -4,6 +4,7 @@ import fs from "fs/promises";
 const router = new Router();
 const filePath = './UsersInfo/admin.JSON';
 
+//getting admin information from its file
 async function fileReader() {
     try {
         const data = await fs.readFile(filePath, 'utf8');
@@ -17,6 +18,7 @@ async function fileReader() {
 
 let adminInfo;
 
+//asynchronous function to get admin information from the async function fileReader
 const initializeAdminInfo = async () => {
     try {
         adminInfo = await fileReader();
@@ -28,6 +30,7 @@ const initializeAdminInfo = async () => {
 
 await initializeAdminInfo();
 
+//get check
 router.get('/', (req, res) => {
     if (adminInfo) {
         const username = adminInfo.username;
@@ -37,6 +40,7 @@ router.get('/', (req, res) => {
     }
 });
 
+//user logging in with the values given in req.body
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
     if(adminInfo){

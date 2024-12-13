@@ -4,6 +4,7 @@ import fs from "fs/promises";
 const router = new Router();
 const filePath = './UsersInfo/users.JSON';
 
+//reading the object user from its file
 async function fileReader() {
     try {
         const data = await fs.readFile(filePath, 'utf8');
@@ -17,6 +18,7 @@ async function fileReader() {
 
 let usersInfo;
 
+//asynchronous function because fileReader is an asynchronous function
 const initializeUsersInfo = async () => {
     try {
         usersInfo = await fileReader();
@@ -28,6 +30,7 @@ const initializeUsersInfo = async () => {
 
 await initializeUsersInfo();
 
+//get check//
 router.get('/', (req, res) => {
 
     if (usersInfo) {
@@ -38,6 +41,7 @@ router.get('/', (req, res) => {
     }
 });
 
+//logging in with the user information//
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
