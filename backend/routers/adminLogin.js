@@ -1,5 +1,6 @@
 import { Router } from "express";
 import fs from "fs/promises";
+import {generateToken, verifyToken} from "../utils/token.js";
 
 const router = new Router();
 const filePath = './UsersInfo/admin.JSON';
@@ -47,7 +48,8 @@ router.post('/login', (req, res) => {
         const adminUsername = adminInfo.username;
         const adminPassword = adminInfo.password;
         if(adminUsername === username && adminPassword === password){
-            res.status(200).send({message: `You are logged in as ${adminUsername}!`});
+            const token = generateToken;
+            res.cookie('access_token', token, { httpOnly: true }).status(200).send({message: `You are logged in as ${adminUsername}!`});
         }
         else{
             res.status(500).send({message: `Unauthorized`});

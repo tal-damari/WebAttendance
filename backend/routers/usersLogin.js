@@ -1,5 +1,6 @@
 import { Router } from "express";
 import fs from "fs/promises";
+import {generateToken, verifyToken} from "../utils/token.js";
 
 const router = new Router();
 const filePath = './UsersInfo/users.JSON';
@@ -48,7 +49,8 @@ router.post('/login', (req, res) => {
     for (let user of usersInfo) {
         console.log(user);
         if (user.username === username && user.password === password) {
-            return res.status(200).send({ message: `You are logged in as ${user.username}` }); // Exit the function
+            const token = generateToken;
+            return res.cookie('access_token', token, { httpOnly: true }).status(200).send({ message: `You are logged in as ${user.username}` }); // Exit the function
         }
     }
     res.status(401).send({ message: `User is not created in the system` });
