@@ -31,7 +31,7 @@ const initializeAdminInfo = async () => {
 await initializeAdminInfo();
 
 //get check
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     if (adminInfo) {
         const username = adminInfo.username;
         res.status(200).send({ username });
@@ -41,7 +41,7 @@ router.get('/', (req, res) => {
 });
 
 //user logging in with the values given in req.body
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     if(adminInfo){
         const adminUsername = adminInfo.username;

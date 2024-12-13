@@ -31,7 +31,7 @@ const initializeUsersInfo = async () => {
 await initializeUsersInfo();
 
 //get check//
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 
     if (usersInfo) {
         const username = usersInfo[0].username;
@@ -42,7 +42,7 @@ router.get('/', (req, res) => {
 });
 
 //logging in with the user information//
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     for (let user of usersInfo) {
