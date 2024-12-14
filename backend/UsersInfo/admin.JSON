@@ -4,8 +4,7 @@
       "username": "administrator",
       "password": "administrator123",
       "email": "taldamari643@gmail.com",
-      "role": "manager",
-      "secret_key": "e1234f5b678c910d11e1f2a345b678c9f11e2a345b678c9f11e2a345b678c9f1"
+      "role": "manager"
     }
   ]
 }
