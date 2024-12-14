@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {getDate} from '../utils/date.js';
 import {getTime} from '../utils/time.js';
+import {userIn} from "./usersLogin.js";
 
 const router = new Router();
 
@@ -24,5 +25,9 @@ router.get('/time', async (req, res) => {
     }
 })
 
+router.get('/entrance', async (req, res) => {
+
+
+})
 
 export default router;

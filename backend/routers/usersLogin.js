@@ -3,6 +3,7 @@ import fs from "fs/promises";
 
 const router = new Router();
 const filePath = './UsersInfo/users.JSON';
+export let userIn;
 
 //reading the object user from its file
 async function fileReader() {
@@ -43,8 +44,8 @@ router.get('/', async (req, res) => {
 
 //logging in with the user information//
 router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-
+    const {username,password } = req.body;
+    userIn = username;
     for (let user of usersInfo) {
         console.log(user);
         if (user.username === username && user.password === password) {
