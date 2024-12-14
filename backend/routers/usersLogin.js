@@ -1,33 +1,10 @@
 import { Router } from "express";
-import fs from "fs/promises";
+import {initializeUsersInfo} from "../utils/fetchJsonUsers.js";
+import {usersInfo} from "../utils/fetchJsonUsers.js";
 
 const router = new Router();
-const filePath = './UsersInfo/users.JSON';
 export let userIn;
 
-//reading the object user from its file
-async function fileReader() {
-    try {
-        const data = await fs.readFile(filePath, 'utf8');
-        const usersData = JSON.parse(data);
-        return usersData["users"];
-    } catch (error) {
-        console.error('Error:', error);
-        throw error;
-    }
-}
-
-let usersInfo;
-
-//asynchronous function because fileReader is an asynchronous function
-const initializeUsersInfo = async () => {
-    try {
-        usersInfo = await fileReader();
-        console.log('User Info loaded:', usersInfo);
-    } catch (error) {
-        console.error('Failed to load User Info:', error);
-    }
-};
 
 await initializeUsersInfo();
 

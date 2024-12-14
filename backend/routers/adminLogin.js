@@ -1,20 +1,7 @@
 import { Router } from "express";
-import fs from "fs/promises";
+import {fileReader} from "../utils/fileReaderAdmin.js";
 
 const router = new Router();
-const filePath = './UsersInfo/admin.JSON';
-
-//getting admin information from its file
-async function fileReader() {
-    try {
-        const data = await fs.readFile(filePath, 'utf8');
-        const adminData = JSON.parse(data);
-        return adminData["admin"][0];
-    } catch (error) {
-        console.error('Error:', error);
-        throw error;
-    }
-}
 
 let adminInfo;
 
@@ -22,7 +9,7 @@ let adminInfo;
 const initializeAdminInfo = async () => {
     try {
         adminInfo = await fileReader();
-        console.log('Admin Info loaded:', adminInfo);
+        /*console.log('Admin Info loaded:', adminInfo)*/;
     } catch (error) {
         console.error('Failed to load Admin Info:', error);
     }
