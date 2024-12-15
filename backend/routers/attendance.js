@@ -3,8 +3,10 @@ import {getDate} from '../utils/date.js';
 import {getTime} from '../utils/time.js';
 import {userIn} from "./usersLogin.js";
 import {usersInfo, initializeUsersInfo} from "../utils/fetchJsonUsers.js";
-import {addEntranceExit} from "../utils/addEntranceExit.js";
+import fs from "fs/promises";
+
 const router = new Router();
+const filePath = './UsersInfo/users.JSON';
 
 await initializeUsersInfo();
 
@@ -30,9 +32,7 @@ router.get('/time', async (req, res) => {
     }
 })
 
-
-//TODO fix the entrance//
-router.get('/entrance', async (req, res) => {
+router.get('/entranceExit', async (req, res) => {
     const currentDate = await getDate();
     const currentTime = await getTime();
 
@@ -42,12 +42,16 @@ router.get('/entrance', async (req, res) => {
 
     for (let user of usersInfo) {
         if (user.username === userIn){
-            if (!user.assign_date) {
-                user.assign_date = [];
-            }
-            user.assign_date.push({ date: currentDate, time: currentTime });
+            user.attendance.push({ date: currentDate, time: currentTime });
         }
     }
+
+    await fs.writeFile(filePath, JSON.stringify({ users: usersInfo }, null, 2), (err) => {
+        if (err) {
+            console.error("Error writing to JSON file:", err);
+            return res.status(500).send({message: "Error saving data"});
+        }
+    });
     res.status(200).send({usersInfo});
 });
 
