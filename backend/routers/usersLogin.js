@@ -5,15 +5,13 @@ import {usersInfo} from "../utils/fetchJsonUsers.js";
 const router = new Router();
 export let userIn;
 
-
 await initializeUsersInfo();
 
 //get check//
 router.get('/', async (req, res) => {
 
     if (usersInfo) {
-        const username = usersInfo[0].username;
-        res.status(200).send({ username });
+        res.status(200).send({ usersInfo });
     } else {
         res.status(500).send({ error: 'users info is unavailable' });
     }

@@ -3,7 +3,7 @@ const regTime = new RegExp(/(\d{2}:\d{2})/);
 
 export async function getTime() {
     try {
-        const response = await axios.get('http://worldtimeapi.org/api/timezone/Europe/Berlin');
+        const response = await axios.get('https://worldtimeapi.org/api/timezone/Europe/Berlin');
         const currentTime = response.data["datetime"];
 
         const match = currentTime.match(regTime);

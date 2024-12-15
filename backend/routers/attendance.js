@@ -8,6 +8,8 @@ const router = new Router();
 
 await initializeUsersInfo();
 
+console.log(usersInfo);
+
 //router that can get the date
 router.get('/date', async (req, res) => {
     const currentDate = await getDate();
@@ -38,7 +40,15 @@ router.get('/entrance', async (req, res) => {
         return res.status(500).send({message: 'Error fetching Data'});
     }
 
-    res.status(200).send({message: "current date: "+currentDate + "current time: "+currentTime});
+    for (let user of usersInfo) {
+        if (user.username === userIn){
+            if (!user.assign_date) {
+                user.assign_date = [];
+            }
+            user.assign_date.push({ date: currentDate, time: currentTime });
+        }
+    }
+    res.status(200).send({usersInfo});
 });
 
 export default router;

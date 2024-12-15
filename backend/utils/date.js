@@ -4,7 +4,7 @@ const regTime = new RegExp(/^\d{4}-\d{2}-\d{2}/);
 
 export async function getDate() {
     try {
-        const response = await axios.get('http://worldtimeapi.org/api/timezone/Europe/Berlin');
+        const response = await axios.get('https://worldtimeapi.org/api/timezone/Europe/Berlin');
         const currentTime = response.data["datetime"];
 
         const match = currentTime.match(regTime);
