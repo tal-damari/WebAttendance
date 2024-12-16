@@ -1,7 +1,6 @@
 {
   "users": [
     {
-      "id": 1,
       "username": "user1",
       "password": "user1123",
       "role": "worker",
@@ -10,13 +9,28 @@
       "phone": "0500000000"
     },
     {
-      "id": 2,
       "username": "user2",
       "password": "user2123",
       "role": "worker",
       "attendance": [],
       "email": "user2@gmail.com",
       "phone": "0500000000"
+    },
+    {
+      "username": "user3",
+      "password": "user3123",
+      "role": "worker",
+      "attendance": [],
+      "email": "fake_email@gmail.com",
+      "phone": "050000000"
+    },
+    {
+      "username": "user4",
+      "password": "user3123",
+      "role": "worker",
+      "attendance": [],
+      "email": "fake_email@gmail.com",
+      "phone": "050000000"
     }
   ]
 }

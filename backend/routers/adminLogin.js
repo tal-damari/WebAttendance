@@ -39,7 +39,6 @@ router.post('/login', async (req, res) => {
         else{
             res.status(500).send({message: `Unauthorized`});
         }
-
     }
 })
 
