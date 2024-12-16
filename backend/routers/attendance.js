@@ -32,6 +32,7 @@ router.get('/time', async (req, res) => {
     }
 })
 
+// every time a user wants to add a new status, they need to login and then add the status -> needs to run login enpoint and then this enpoint//
 router.get('/entranceExit', async (req, res) => {
     const currentDate = await getDate();
     const currentTime = await getTime();
@@ -46,13 +47,13 @@ router.get('/entranceExit', async (req, res) => {
         }
     }
 
-    await fs.writeFile(filePath, JSON.stringify({ users: usersInfo }, null, 2), (err) => {
-        if (err) {
-            console.error("Error writing to JSON file:", err);
-            return res.status(500).send({message: "Error saving data"});
-        }
-    });
-    res.status(200).send({usersInfo});
+    try{
+        await fs.writeFile(filePath, JSON.stringify({ users: usersInfo }, null, 2));
+        res.status(200).send({usersInfo});
+    }catch(err){
+        console.log(err);
+        return res.status(500).send({message: 'Error saving Data'});
+    }
 });
 
 export default router;

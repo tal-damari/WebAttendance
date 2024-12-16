@@ -12,7 +12,20 @@
       "username": "user2",
       "password": "user2123",
       "role": "worker",
-      "attendance": [],
+      "attendance": [
+        {
+          "date": "2024-12-16",
+          "time": "18:23"
+        },
+        {
+          "date": "2024-12-16",
+          "time": "18:26"
+        },
+        {
+          "date": "2024-12-16",
+          "time": "18:28"
+        }
+      ],
       "email": "user2@gmail.com",
       "phone": "0500000000"
     },
