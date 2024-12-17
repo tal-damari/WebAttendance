@@ -22,7 +22,6 @@ router.post('/login', async (req, res) => {
     const {username,password } = req.body;
     userIn = username;
     for (let user of usersInfo) {
-        console.log(user);
         if (user.username === username && user.password === password) {
             return res.status(200).send({ message: `You are logged in as ${user.username}` }); // Exit the function
         }

@@ -8,6 +8,10 @@
         {
           "date": "2024-12-17",
           "time": "16:02"
+        },
+        {
+          "date": "2024-12-17",
+          "time": "16:07"
         }
       ],
       "email": "user1@gmail.com",
@@ -29,6 +33,10 @@
         {
           "date": "2024-12-16",
           "time": "18:28"
+        },
+        {
+          "date": "2024-12-17",
+          "time": "16:40"
         }
       ],
       "email": "user2@gmail.com",
@@ -36,6 +44,14 @@
     },
     {
       "username": "user3",
+      "password": "user3123",
+      "role": "worker",
+      "attendance": [],
+      "email": "fake_email@gmail.com",
+      "phone": "050000000"
+    },
+    {
+      "username": "user4",
       "password": "user3123",
       "role": "worker",
       "attendance": [],

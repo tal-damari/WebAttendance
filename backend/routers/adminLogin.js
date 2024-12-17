@@ -9,7 +9,6 @@ let adminInfo;
 const initializeAdminInfo = async () => {
     try {
         adminInfo = await fileReader();
-        /*console.log('Admin Info loaded:', adminInfo)*/;
     } catch (error) {
         console.error('Failed to load Admin Info:', error);
     }

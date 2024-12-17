@@ -10,8 +10,6 @@ const filePath = './UsersInfo/users.JSON';
 
 await initializeUsersInfo();
 
-console.log(usersInfo);
-
 //router that can get the date
 router.get('/date', async (req, res) => {
     const currentDate = await getDate();
@@ -55,5 +53,4 @@ router.get('/entranceExit', async (req, res) => {
         return res.status(500).send({message: 'Error saving Data'});
     }
 });
-
 export default router;
