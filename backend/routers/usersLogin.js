@@ -7,15 +7,6 @@ export let userIn;
 
 await initializeUsersInfo();
 
-//get check//
-router.get('/', async (req, res) => {
-
-    if (usersInfo) {
-        res.status(200).send({ usersInfo });
-    } else {
-        res.status(500).send({ error: 'users info is unavailable' });
-    }
-});
 
 //logging in with the user information//
 router.post('/login', async (req, res) => {
