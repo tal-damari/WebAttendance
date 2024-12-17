@@ -4,7 +4,12 @@
       "username": "user1",
       "password": "user1123",
       "role": "worker",
-      "attendance": [],
+      "attendance": [
+        {
+          "date": "2024-12-17",
+          "time": "16:02"
+        }
+      ],
       "email": "user1@gmail.com",
       "phone": "0500000000"
     },

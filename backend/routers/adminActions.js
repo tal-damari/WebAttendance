@@ -86,4 +86,29 @@ router.post('/deleteAttendance', async (req, res) => {
 
 })
 
+//admin can add attendance that does not appear
+router.post('/addNewAttendance', async (req, res) => {
+    const { username, date, time } = req.body;
+
+    if (!username || !date || !time) {
+        return res.status(400).send({ message: 'Missing required fields: username, date, or time' });
+    }
+
+    const user = usersInfo.find(user => user.username === username);
+
+    if (!user) {
+        return res.status(404).send({ message: 'User not found' });
+    }
+
+    user.attendance.push({date, time});
+
+    try {
+        await fs.writeFile(filePath, JSON.stringify({ users: usersInfo }, null, 2));
+        res.status(200).send({ message: 'New attendance added successfully', user });
+    } catch (err) {
+        console.error("Error writing to JSON file:", err);
+        return res.status(500).send({ message: 'Error saving data' });
+    }
+});
+
 export default router;
